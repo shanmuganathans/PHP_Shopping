@@ -1,27 +1,55 @@
 <?php
 session_start();
 
-// Check if the cart exists
+// Check if the cart is empty
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    echo "<p>Your cart is empty. <a href='shop.php'>Return to shop</a></p>";
+    echo "<p style='text-align:center; font-size:18px; margin-top:50px;'>
+            Your cart is empty. <a href='shop.php'>Return to shop</a>
+          </p>";
     exit;
 }
 
-// Handle item removal
-if (isset($_POST['remove'])) {
-    $product_id = $_POST['product_id'];
-    $remove_quantity = $_POST['remove_quantity'];
+// Handle item quantity reduction
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'], $_POST['product_id'], $_POST['remove_quantity'])) {
+    $product_id = htmlspecialchars($_POST['product_id']);
+    $remove_quantity = (int)$_POST['remove_quantity'];
 
     foreach ($_SESSION['cart'] as $key => $item) {
         if ($item['id'] == $product_id) {
             if ($item['quantity'] <= $remove_quantity) {
-                unset($_SESSION['cart'][$key]);
+                unset($_SESSION['cart'][$key]); // Remove the entire item if quantity is 0
             } else {
                 $_SESSION['cart'][$key]['quantity'] -= $remove_quantity;
             }
             break;
         }
     }
+
+    // If cart is empty after removal, destroy session cart
+    if (empty($_SESSION['cart'])) {
+        unset($_SESSION['cart']);
+    }
+
+    header("Location: cart.php");
+    exit;
+}
+
+// Handle full item removal
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'], $_POST['product_id'])) {
+    $product_id = htmlspecialchars($_POST['product_id']);
+
+    foreach ($_SESSION['cart'] as $key => $item) {
+        if ($item['id'] == $product_id) {
+            unset($_SESSION['cart'][$key]); // Completely remove item from cart
+            break;
+        }
+    }
+
+    // If cart is empty after removal, destroy session cart
+    if (empty($_SESSION['cart'])) {
+        unset($_SESSION['cart']);
+    }
+
     header("Location: cart.php");
     exit;
 }
@@ -32,10 +60,11 @@ if (isset($_POST['remove'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - Bakery</title>
+    <title>Your Cart - Bakery</title>
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <div class="navbar">
         <a href="home.php">Home</a>
         <a href="menu.php">Menu</a>
@@ -45,6 +74,7 @@ if (isset($_POST['remove'])) {
         <a href="logout.php">Logout</a>
     </div>
 
+    <!-- Cart Container -->
     <div class="cart-container">
         <h2>Your Cart</h2>
         <table>
@@ -54,7 +84,7 @@ if (isset($_POST['remove'])) {
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,17 +92,25 @@ if (isset($_POST['remove'])) {
                 <?php foreach ($_SESSION['cart'] as $item): ?>
                     <tr>
                         <td><?= htmlspecialchars($item['name']) ?></td>
-                        <td>₹                          <?= htmlspecialchars($item['price']) ?></td>
-                        <td><?= htmlspecialchars($item['quantity']) ?></td>
-                        <td>₹                          <?= $item['price'] * $item['quantity'] ?></td>
+                        <td>₹<?= number_format($item['price'], 2) ?></td>
+                        <td><?= (int) $item['quantity'] ?></td>
+                        <td>₹<?= number_format($item['price'] * $item['quantity'], 2) ?></td>
                         <td>
-                            <form action="cart.php" method="POST">
+                            <!-- Remove Quantity Form -->
+                            <form action="cart.php" method="POST" style="display:inline;" onsubmit="return confirm('Reduce quantity?');">
+                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['id']) ?>">
                                 <select name="remove_quantity" required>
                                     <?php for ($i = 1; $i <= $item['quantity']; $i++): ?>
                                         <option value="<?= $i ?>"><?= $i ?></option>
                                     <?php endfor; ?>
                                 </select>
-                     <a href="remove_item.php" class="btn checkout-btn"> remove</a>
+                                <button type="submit" name="remove" class="btn remove-btn">Reduce</button>
+                            </form>
+
+                            <!-- Full Remove Form -->
+                            <form action="cart.php" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to remove this item completely?');">
+                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                <button type="submit" name="remove_item" class="btn delete-btn">Remove Item</button>
                             </form>
                         </td>
                     </tr>
@@ -80,9 +118,11 @@ if (isset($_POST['remove'])) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <p class="total">Grand Total: ₹
-        <?= $total_price ?></p>
 
+        <!-- Grand Total -->
+        <p class="total">Grand Total: <strong>₹<?= number_format($total_price, 2) ?></strong></p>
+
+        <!-- Actions -->
         <div class="actions">
             <a href="shop.php" class="btn">Return to Shop</a>
             <a href="checkout.php" class="btn checkout-btn">Proceed to Checkout</a>

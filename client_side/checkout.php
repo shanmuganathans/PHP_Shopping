@@ -1,11 +1,13 @@
 <?php
-// Database connection details
+include 'db.php';
+session_start();
+
+// Database connection
 $servername = "localhost";
-$username = "root"; // Change to your database username
-$password = "";     // Change to your database password
+$username = "root"; 
+$password = "root@123";     
 $dbname = "register";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -13,23 +15,49 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the form is submitted
+// Ensure the cart exists
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    echo "<p>Your cart is empty. <a href='shop.php'>Return to shop</a></p>";
+    exit;
+}
+
+$order_placed = false;
+$error_message = "";
+
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $customer_name = $conn->real_escape_string($_POST['customer_name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $phone = $conn->real_escape_string($_POST['phone']);
-    $address = $conn->real_escape_string($_POST['address']);
-    $total_amount = $conn->real_escape_string($_POST['total_amount']);
+    if (!empty($_POST['customer_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['phone'])) {
+        
+        // Sanitize user input
+        $customer_name = trim($_POST['customer_name']);
+        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : "";
+        $phone = trim($_POST['phone']);
+        $address = trim($_POST['address']);
 
-    // SQL query to insert data into the orders table
-    $sql = "INSERT INTO orders (customer_name, email, phone, address, total_amount, order_date)
-            VALUES ('$customer_name', '$email', '$phone', '$address', '$total_amount', NOW())";
+        if (empty($email)) {
+            $error_message = "Invalid email address.";
+        } else {
+            // Calculate total price
+            $total_price = 0;
+            foreach ($_SESSION['cart'] as $item) {
+                $total_price += $item['price'] * $item['quantity'];
+            }
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Order placed successfully!";
+            // Insert order using prepared statement
+            $stmt = $conn->prepare("INSERT INTO orders (customer_name, email, phone, address, total_amount, order_date) VALUES (?, ?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssssd", $customer_name, $email, $phone, $address, $total_price);
+
+            if ($stmt->execute()) {
+                $order_placed = true;
+                $_SESSION['cart'] = []; // Clear cart after successful order
+            } else {
+                $error_message = "Error placing order: " . $stmt->error;
+            }
+
+            $stmt->close();
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $error_message = "Please fill in all required fields.";
     }
 }
 
@@ -56,13 +84,15 @@ $conn->close();
 
     <div class="checkout-container">
         <h2>Checkout</h2>
-        <?php if (isset($order_placed) && $order_placed): ?>
-            <p class="success">Order placed successfully!</p>
+
+        <?php if ($order_placed): ?>
+            <p class="success">Order placed successfully! 🎉</p>
             <a href="shop.php" class="btn">Continue Shopping</a>
         <?php else: ?>
-            <?php if (isset($error_message)): ?>
+            <?php if (!empty($error_message)): ?>
                 <p class="error"><?= htmlspecialchars($error_message) ?></p>
             <?php endif; ?>
+
             <h3>Your Order</h3>
             <table>
                 <thead>
@@ -78,28 +108,33 @@ $conn->close();
                     <?php foreach ($_SESSION['cart'] as $item): ?>
                         <tr>
                             <td><?= htmlspecialchars($item['name']) ?></td>
-                            <td>₹                              <?= htmlspecialchars($item['price']) ?></td>
+                            <td>₹ <?= number_format($item['price'], 2) ?></td>
                             <td><?= htmlspecialchars($item['quantity']) ?></td>
-                            <td>₹                              <?= $item['price'] * $item['quantity'] ?></td>
+                            <td>₹ <?= number_format($item['price'] * $item['quantity'], 2) ?></td>
                         </tr>
                         <?php $total_price += $item['price'] * $item['quantity']; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <p class="total">Grand Total: ₹
-            <?= $total_price ?></p>
+            <p class="total">Grand Total: ₹ <?= number_format($total_price, 2) ?></p>
 
             <h3>Shipping Information</h3>
             <form action="checkout.php" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="customer_name">Name:</label>
+                <input type="text" id="customer_name" name="customer_name" required>
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required>
+
                 <label for="address">Address:</label>
                 <textarea id="address" name="address" required></textarea>
+
                 <div class="form-actions">
                     <a href="cart.php" class="btn">Return to Cart</a>
-                    <button type="submit" class="btn">Place Order</button>
+                    <button type="submit" class="btn checkout-btn">Place Order</button>
                 </div>
             </form>
         <?php endif; ?>

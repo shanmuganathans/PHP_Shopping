@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,116 +15,110 @@
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
+
+<!-- Navigation Bar -->
 <div class="navbar">
     <a href="home.php">Home</a>
     <a href="menu.php">Menu</a>
     <a href="shop.php">Shop</a>
     <a href="about.php">About Us</a>
     <a href="contact.php">Contact Us</a>
-	<a href="logout.php">Logout</a></div>
-  <header>
-        <h1>Our Bakery Menu</h1>
-    </header>
+    <a href="logout.php">Logout</a>
+</div>
 
-    <div class="search-container">
-        <input type="text" id="search" placeholder="Search items...">
-        <button onClick="filterMenu()" id="searchBtn">Search</button>
-    </div>
+<!-- Header -->
+<header>
+    <h1>Our Bakery Menu</h1>
+</header>
 
-    <div class="menu-container">
-        <div class="menu-category" id="cakes">
-            <h2>Cakes</h2>
-            <div class="menu-item" data-name="Gulab Jamun Cake">
-                <img src="../images/gulab juman cake.jpg" alt="Gulab Jamun Cake" width="750" height="720">
-                <h3>Gulab Jamun Cake - ₹120 per slice</h3>
-          </div>
-            <div class="menu-item" data-name="Rava Kesari Cake">
-                <img src="../images/rava kesari cake.jpg" alt="Rava Kesari Cake" width="1200" height="1200">
-                <h3>Rava Kesari Cake - ₹100 per slice</h3>
-          </div>
-            <div class="menu-item" data-name="Milk Cake">
-                <img src="../images/milk cake.jpg" alt="Milk Cake" width="2940" height="1960">
-                <h3>Milk Cake - ₹150 per slice</h3>
-          </div>
-            <div class="menu-item" data-name="Mango Cake">
-                <img src="../images/mango cake.jpg" alt="Mango Cake" width="626" height="417">
-                <h3>Mango Cake - ₹130 per slice</h3>
-          </div>
-            <div class="menu-item" data-name="Chocolate Cake">
-                <img src="../images/chocolate cake.jpg" alt="Chocolate Cake" width="1096" height="1095">
-                <h3>Chocolate Cake - ₹110 per slice</h3>
-          </div>
-        </div>
+<!-- Search Bar -->
+<div class="search-container">
+    <input type="text" id="search" placeholder="Search items..." onkeyup="filterMenu()">
+    <button id="searchBtn">Search</button>
+</div>
 
-        <div class="menu-category" id="sweets">
-            <h2>Sweets & Desserts</h2>
-            <div class="menu-item" data-name="Gulab Jamun">
-              <img src="../images/gulab jamun.jpg" alt="Gulab Jamun" width="456" height="499">
-              <h3>Gulab Jamun - ₹40 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Jalebi">
-                <img src="../images/jalebi.jpg" alt="Jalebi" width="1513" height="1087">
-                <h3>Jalebi - ₹50 per serving</h3>
-          </div>
-            <div class="menu-item" data-name="Barfi">
-                <img src="../images/barfi.jpg" alt="Barfi" width="505" height="507">
-                <h3>Barfi (Pistachio, Coconut, Rose) - ₹60 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Rasgulla">
-                <img src="../images/rasgulla.jpg" alt="Rasgulla" width="1089" height="1098">
-                <h3>Rasgulla - ₹30 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Kaju Katli">
-                <img src="../images/kaju katli.jpg" alt="Kaju Katli" width="1389" height="1065">
-                <h3>Kaju Katli - ₹80 per piece</h3>
-          </div>
-        </div>
+<!-- Menu Items -->
+<div class="menu-container">
 
-        <div class="menu-category" id="cookies">
-            <h2>Cookies & Biscuits</h2>
-            <div class="menu-item" data-name="Chocolate Chip Cookies">
-              <img src="../images/chocolate chip cookies.jpeg" alt="Chocolate Chip Cookies" width="275" height="183">
-              <h3>Chocolate Chip Cookies - ₹25 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Coconut Cookies">
-                <img src="../images/coconut cookies.jpg" alt="Coconut Cookies" width="1451" height="1036">
-                <h3>Coconut Cookies - ₹20 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Butter Biscuits">
-                <img src="../images/butter biscuits.jpg" alt="Butter Biscuits" width="2560" height="1706">
-                <h3>Butter Biscuits - ₹20 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Peanut Butter Cookies">
-              <img src="../images/peanut butter cookies.jpg" alt="Peanut Butter Cookies" width="800" height="800">
-              <h3>Peanut Butter Cookies - ₹30 per piece</h3>
-          </div>
-            <div class="menu-item" data-name="Oatmeal Raisin Cookies">
-                <img src="../images/oatmeal raisin cookie.jpg" alt="Oatmeal Raisin Cookies" width="612" height="459">
-                <h3>Oatmeal Raisin Cookies - ₹20 per piece</h3>
-          </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Our Bakery. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // JavaScript for searching the menu
-        function filterMenu() {
-            let input = document.getElementById("search").value.toLowerCase();
-            let menuItems = document.getElementsByClassName("menu-item");
-
-            for (let i = 0; i < menuItems.length; i++) {
-                let itemName = menuItems[i].getAttribute("data-name").toLowerCase();
-                if (itemName.includes(input)) {
-                    menuItems[i].style.display = "block";
-                } else {
-                    menuItems[i].style.display = "none";
-                }
-            }
+    <!-- Cakes Section -->
+    <div class="menu-category" id="cakes">
+        <h2>Cakes</h2>
+        <?php
+        $cakes = [
+            ["Gulab Jamun Cake", "gulab juman cake.jpg", "₹120 per slice"],
+            ["Rava Kesari Cake", "rava kesari cake.jpg", "₹100 per slice"],
+            ["Milk Cake", "milk cake.jpg", "₹150 per slice"],
+            ["Mango Cake", "mango cake.jpg", "₹130 per slice"],
+            ["Chocolate Cake", "chocolate cake.jpg", "₹110 per slice"]
+        ];
+        foreach ($cakes as $cake) {
+            echo '<div class="menu-item" data-name="'.htmlspecialchars($cake[0]).'">
+                    <img src="../images/'.htmlspecialchars($cake[1]).'" alt="'.htmlspecialchars($cake[0]).'">
+                    <h3>'.htmlspecialchars($cake[0]).' - '.htmlspecialchars($cake[2]).'</h3>
+                  </div>';
         }
-    </script>
+        ?>
+    </div>
+
+    <!-- Sweets Section -->
+    <div class="menu-category" id="sweets">
+        <h2>Sweets & Desserts</h2>
+        <?php
+        $sweets = [
+            ["Gulab Jamun", "gulab jamun.jpg", "₹40 per piece"],
+            ["Jalebi", "jalebi.jpg", "₹50 per serving"],
+            ["Barfi", "barfi.jpg", "₹60 per piece"],
+            ["Rasgulla", "rasgulla.jpg", "₹30 per piece"],
+            ["Kaju Katli", "kaju katli.jpg", "₹80 per piece"]
+        ];
+        foreach ($sweets as $sweet) {
+            echo '<div class="menu-item" data-name="'.htmlspecialchars($sweet[0]).'">
+                    <img src="../images/'.htmlspecialchars($sweet[1]).'" alt="'.htmlspecialchars($sweet[0]).'">
+                    <h3>'.htmlspecialchars($sweet[0]).' - '.htmlspecialchars($sweet[2]).'</h3>
+                  </div>';
+        }
+        ?>
+    </div>
+
+    <!-- Cookies Section -->
+    <div class="menu-category" id="cookies">
+        <h2>Cookies & Biscuits</h2>
+        <?php
+        $cookies = [
+            ["Chocolate Chip Cookies", "chocolate chip cookies.jpeg", "₹25 per piece"],
+            ["Coconut Cookies", "coconut cookies.jpg", "₹20 per piece"],
+            ["Butter Biscuits", "butter biscuits.jpg", "₹20 per piece"],
+            ["Peanut Butter Cookies", "peanut butter cookies.jpg", "₹30 per piece"],
+            ["Oatmeal Raisin Cookies", "oatmeal raisin cookie.jpg", "₹20 per piece"]
+        ];
+        foreach ($cookies as $cookie) {
+            echo '<div class="menu-item" data-name="'.htmlspecialchars($cookie[0]).'">
+                    <img src="../images/'.htmlspecialchars($cookie[1]).'" alt="'.htmlspecialchars($cookie[0]).'">
+                    <h3>'.htmlspecialchars($cookie[0]).' - '.htmlspecialchars($cookie[2]).'</h3>
+                  </div>';
+        }
+        ?>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Our Bakery. All Rights Reserved.</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    function filterMenu() {
+        let input = document.getElementById("search").value.toLowerCase().trim();
+        let menuItems = document.querySelectorAll(".menu-item");
+
+        menuItems.forEach(item => {
+            let itemName = item.getAttribute("data-name").toLowerCase();
+            item.style.display = itemName.includes(input) ? "block" : "none";
+        });
+    }
+</script>
 
 </body>
 </html>

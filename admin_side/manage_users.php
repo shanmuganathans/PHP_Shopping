@@ -1,34 +1,44 @@
 <?php
 session_start();
 
-// Check if the admin is logged in
-if (!isset($_SESSION['admin_username'])) {
-    header("Location: admin_login.php");
+// Ensure admin is logged in
+if (!isset($_SESSION['loggedInUser'])) {
+    header("Location: login.php");
     exit();
 }
 
+// Database connection
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root@123";
 $db_name = "register";
 
 $conn = new mysqli($servername, $username, $password, $db_name);
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch all users
-$sql = "SELECT * FROM users";
-$result = $conn->query($sql);
-
-// Handle user deletion
+// Handle user deletion securely
 if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
-    $conn->query("DELETE FROM users WHERE id = $delete_id");
+    $delete_id = intval($_GET['delete_id']); // Ensure ID is an integer
+    $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+    $stmt->bind_param("i", $delete_id);
+
+    if ($stmt->execute()) {
+        $_SESSION['message'] = "User deleted successfully!";
+    } else {
+        $_SESSION['message'] = "Error deleting user.";
+    }
+    $stmt->close();
     header("Location: manage_users.php");
     exit();
 }
+
+// Fetch all users securely
+$sql = "SELECT id, username, email FROM users";
+$result = $conn->query($sql);
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +48,22 @@ if (isset($_GET['delete_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function confirmDeletion(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "manage_users.php?delete_id=" + userId;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="dashboard-container">
         <h1>Manage Users</h1>
+
+        <?php if (isset($_SESSION['message'])): ?>
+            <p class="success-message"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
+        <?php endif; ?>
+
         <table>
             <thead>
                 <tr>
@@ -52,18 +74,25 @@ if (isset($_GET['delete_id'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php if ($result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['username']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td>
+                                <button onclick="confirmDeletion(<?php echo $row['id']; ?>)">Delete</button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td>
-                            <a href="manage_users.php?delete_id=<?php echo $row['id']; ?>">Delete</a>
-                        </td>
+                        <td colspan="4" style="text-align:center;">No users found.</td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endif; ?>
             </tbody>
         </table>
+
         <a href="dashboard.php" class="back-btn">Back to Dashboard</a>
     </div>
 </body>

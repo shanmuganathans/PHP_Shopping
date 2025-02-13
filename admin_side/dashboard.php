@@ -6,18 +6,23 @@ if (!isset($_SESSION["loggedInUser"])) {
     exit();
 }
 
+$admin_username = htmlspecialchars($_SESSION["loggedInUser"], ENT_QUOTES, 'UTF-8'); // Prevents XSS attacks
+
+// Database connection
 $host = 'localhost';
 $username = 'root';
-$password = '';
+$password = 'root@123';
 $database = 'register';
 
-$conn = mysqli_connect('localhost', 'root', '', 'register');
+$conn = new mysqli($host, $username, $password, $database);
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
 }
 
-mysqli_close($conn);
+// If you need to fetch data, you can do so here
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +36,7 @@ mysqli_close($conn);
 <body>
     <div class="dashboard-container">
         <h1>Welcome, Admin!</h1>
-        <p>You are logged in as: <strong><?php echo htmlspecialchars($admin_username); ?></strong></p>
+        <p>You are logged in as: <strong><?php echo $admin_username; ?></strong></p>
 
         <!-- Navigation links -->
         <nav class="admin-nav">

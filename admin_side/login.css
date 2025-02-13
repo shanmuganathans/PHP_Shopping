@@ -1,55 +1,117 @@
-/* Login Page Styling */
-.login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf5e6; /* Light cream background for a warm feel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
+/* Login Container */
+.login-container {
+    max-width: 380px;
+    width: 90%;
+    padding: 25px;
+    background: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Title */
 .login-container h1 {
     color: #b34d3a;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
+/* Login Form */
 .login-form {
     display: flex;
     flex-direction: column;
 }
 
+/* Labels */
 .login-form label {
-    margin-bottom: 5px;
+    text-align: left;
     font-weight: bold;
     color: #333;
+    margin-bottom: 5px;
 }
 
+/* Input Fields */
 .login-form input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 16px;
-    width: 100%;
+    outline: none;
+    transition: all 0.3s ease-in-out;
 }
 
+/* Input Focus */
+.login-form input:focus {
+    border-color: #b34d3a;
+    box-shadow: 0px 0px 5px rgba(179, 77, 58, 0.5);
+}
+
+/* Button Styling */
 .login-form button {
-    background-color: #b34d3a;
+    background: #b34d3a;
     color: white;
-    padding: 10px 15px;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
 }
 
 .login-form button:hover {
-    background-color: #9f422f;
+    background: #9f422f;
+    transform: translateY(-2px);
 }
 
+/* Error Message */
 .error-message {
     color: #ff4d4d;
+    background: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .login-container h1 {
+        font-size: 22px;
+    }
+
+    .login-form input, 
+    .login-form button {
+        font-size: 14px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

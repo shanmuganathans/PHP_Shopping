@@ -1,6 +1,7 @@
+/* General Page Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #f8c8d0, #f4f4f9);
     margin: 0;
     padding: 0;
     display: flex;
@@ -9,57 +10,107 @@ body {
     height: 100vh;
 }
 
+/* Form Container */
 .form-container {
     background-color: #ffffff;
-    padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    width: 320px;
     text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
+/* Title */
 h2 {
-    color: #333333;
+    color: #333;
+    font-size: 22px;
     margin-bottom: 20px;
 }
 
+/* Form Styling */
 form {
     display: flex;
     flex-direction: column;
 }
 
+/* Input Fields */
 input {
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
+/* Input Focus Effect */
+input:focus {
+    outline: none;
+    border-color: #f28ab2;
+    box-shadow: 0 0 8px rgba(242, 138, 178, 0.4);
+}
+
+/* Button */
 button {
-    padding: 10px;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
-    background-color: #5cb85c;
+    border-radius: 6px;
+    background-color: #f28ab2;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #e07a9b;
 }
 
+/* Error Message Styling */
+.error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Bottom Text */
 p {
     margin-top: 15px;
     font-size: 14px;
 }
 
+/* Links */
 a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .form-container {
+        width: 90%;
+        padding: 20px;
+    }
 }

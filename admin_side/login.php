@@ -9,13 +9,14 @@ if (isset($_SESSION["loggedInUser"])) {
 // Database connection
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root@123";
 $db_name = "register";
 
 $conn = new mysqli($servername, $username, $password, $db_name);
 
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database Connection Failed: " . $conn->connect_error);
 }
 
 // Initialize error message variable
@@ -26,28 +27,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_username = trim($_POST['username']);
     $admin_password = trim($_POST['password']);
 
-    if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // Corrected query string concatenation
-        $userCheck = mysqli_query($conn, "SELECT * FROM admin_users WHERE username='$username' AND password='$password'");
+    if (!empty($admin_username) && !empty($admin_password)) {
+        // Secure Query with Prepared Statement
+        $stmt = $conn->prepare("SELECT password FROM admin_users WHERE username = ?");
+        $stmt->bind_param("s", $admin_username);
+        $stmt->execute();
+        $stmt->store_result();
         
-        if ($userCheck) {
-            if (mysqli_num_rows($userCheck) > 0) {
-                $_SESSION['loggedInUser'] = true;
+        // Verify if the user exists
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($hashed_password);
+            $stmt->fetch();
+
+            // Verify hashed password
+            if (password_verify($admin_password, $hashed_password)) {
+                $_SESSION['loggedInUser'] = $admin_username;
                 $_SESSION['show_message'] = 'Logged In Successfully';
-                header('Location: dashboard.php');  //change 'admin_dashboard.php' to the name of your dashboard page
+                header('Location: dashboard.php');
+                exit();
             } else {
-                $_SESSION['show_message'] = 'Invalid Email or Password';
+                $error_message = "Invalid username or password.";
             }
         } else {
-            $_SESSION['show_message'] = 'Something Went Wrong in Query';
+            $error_message = "Invalid username or password.";
         }
+        $stmt->close();
     } else {
-        $_SESSION['show_message'] = 'All fields are required';
+        $error_message = "All fields are required.";
     }
 }
+
 $conn->close();
 ?>
 
@@ -63,7 +72,12 @@ $conn->close();
     <div class="login-container">
         <h1>Admin Login</h1>
 
-        <!-- Display error message --><!-- Admin Login Form -->
+        <!-- Display error message -->
+        <?php if (!empty($error_message)) : ?>
+            <p class="error-message"><?php echo htmlspecialchars($error_message); ?></p>
+        <?php endif; ?>
+
+        <!-- Admin Login Form -->
         <form action="login.php" method="POST" class="login-form">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

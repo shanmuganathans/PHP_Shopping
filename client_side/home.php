@@ -1,12 +1,13 @@
 <?php
 session_start();
 
+// Redirect to login if user is not logged in
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
 
-$username = $_SESSION['username'];
+$username = htmlspecialchars($_SESSION['username']); // Prevent XSS
 ?>
 
 <!DOCTYPE html>
@@ -14,55 +15,56 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home - Our Bakery</title>
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
+
+    <!-- Navbar -->
     <div class="navbar">
         <a href="home.php">Home</a>
         <a href="menu.php">Menu</a>
         <a href="shop.php">Shop</a>
         <a href="about.php">About Us</a>
         <a href="contact.php">Contact Us</a>
-		<a href="logout.php">Logout</a>
-
+        <a href="logout.php">Logout</a>
     </div>
 
-     <section class="hero">
-        <h1>Welcome to Our Bakery!</h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome, <?= $username ?>!</h1>
         <p>Freshly baked treats, made with love!</p>
     </section>
 
+    <!-- Why Choose Us -->
     <div class="content">
         <h2>Why Choose Us?</h2>
         <p>We offer a delightful variety of baked goods, crafted with the finest ingredients to bring joy to your taste buds. From cakes to cookies, everything is made fresh daily!</p>
         <a href="menu.php" class="cta-button">Explore Our Menu</a>
     </div>
-	<div class="home-container">
-    <!-- Hero Section -->
 
-    <!-- Featured Products Section -->
+    <!-- Featured Products -->
     <section class="featured-products">
         <h2>Featured Products</h2>
         <div class="product-list">
             <div class="product">
-                <img src="../images/gulab juman cake.jpg" alt="Gulab Jamun Cake" width="276" height="285">
+                <img src="../images/gulab_juman_cake.jpg" alt="Gulab Jamun Cake" width="276" height="285" loading="lazy">
                 <h3>Gulab Jamun Cake</h3>
                 <p>₹120 per slice</p>
                 <a href="shop.php" class="btn">Shop Now</a>
-          </div>
+            </div>
             <div class="product">
-                <img src="../images/rava kesari cake.jpg" alt="Rava Kesari Cake" width="268" height="290">
+                <img src="../images/rava_kesari_cake.jpg" alt="Rava Kesari Cake" width="268" height="290" loading="lazy">
                 <h3>Rava Kesari Cake</h3>
                 <p>₹100 per slice</p>
                 <a href="shop.php" class="btn">Shop Now</a>
-          </div>
+            </div>
             <div class="product">
-                <img src="../images/chocolate cake.jpg" alt="Chocolate Cake" width="258" height="242">
+                <img src="../images/chocolate_cake.jpg" alt="Chocolate Cake" width="258" height="242" loading="lazy">
                 <h3>Chocolate Cake</h3>
                 <p>₹110 per slice</p>
                 <a href="shop.php" class="btn">Shop Now</a>
-          </div>
+            </div>
         </div>
     </section>
 
@@ -91,7 +93,7 @@ $username = $_SESSION['username'];
         </div>
     </section>
 
-    <!-- Special Offers & Promotions -->
+    <!-- Special Offers -->
     <section class="special-offers">
         <h2>Special Offers</h2>
         <p>Get a 10% discount on your first order! <a href="shop.php">Order Now</a></p>
@@ -102,26 +104,24 @@ $username = $_SESSION['username'];
         <h2>Explore Our Menu</h2>
         <div class="category-list">
             <div class="category">
-                <img src="images/cakes.jpg" alt="Cakes">
+                <img src="images/cakes.jpg" alt="Cakes" loading="lazy">
                 <h3>Cakes</h3>
                 <a href="menu.php">View Menu</a>
             </div>
             <div class="category">
-                <img src="images/sweets.jpg" alt="Sweets">
+                <img src="images/sweets.jpg" alt="Sweets" loading="lazy">
                 <h3>Sweets & Desserts</h3>
                 <a href="menu.php">View Menu</a>
             </div>
             <div class="category">
-                <img src="images/cookies.jpg" alt="Cookies & Biscuits">
+                <img src="images/cookies.jpg" alt="Cookies & Biscuits" loading="lazy">
                 <h3>Cookies & Biscuits</h3>
                 <a href="menu.php">View Menu</a>
             </div>
         </div>
     </section>
 
-
-
-    <!-- Order Now Button -->
+    <!-- Order Now CTA -->
     <section class="order-now">
         <h2>Order Your Favorite Treats</h2>
         <a href="shop.php" class="btn">Order Now</a>
@@ -136,17 +136,16 @@ $username = $_SESSION['username'];
         </form>
     </section>
 
-    <!-- Seasonal or Holiday Specials -->
+    <!-- Seasonal Specials -->
     <section class="seasonal-specials">
         <h2>Seasonal Specials</h2>
         <p>Check out our special holiday treats and themed cakes! Perfect for celebrations. <a href="shop.php">Browse our seasonal collection</a>.</p>
     </section>
 
-</div
-
-    ><div class="footer">
+    <!-- Footer -->
+    <div class="footer">
         &copy; 2025 Our Bakery. All rights reserved.
     </div>
-	
+
 </body>
 </html>
