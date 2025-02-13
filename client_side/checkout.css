@@ -1,0 +1,151 @@
+/* General Reset */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Page Background */
+body {
+    background-color: #ffe6e6; /* Light red background */
+    color: #333; /* Dark text for readability */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #ff4d4d; /* Bright red for navbar */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: white; /* White text for contrast */
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    background-color: #ff3333; /* Darker red on hover */
+    border-radius: 4px;
+}
+
+/* Checkout Container */
+.checkout-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff; /* White container for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.checkout-container h2 {
+    text-align: center;
+    color: #b30000; /* Dark red for headings */
+    margin-bottom: 20px;
+}
+
+.checkout-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.checkout-container table th,
+.checkout-container table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.checkout-container table th {
+    background-color: #ff4d4d; /* Match navbar */
+    color: white; /* White text for contrast */
+}
+
+.checkout-container table td {
+    background-color: #ffe6e6; /* Light red for table rows */
+}
+
+.checkout-container .total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Form Styles */
+.checkout-container form {
+    margin-top: 20px;
+}
+
+.checkout-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #b30000; /* Dark red for labels */
+}
+
+.checkout-container input[type="text"],
+.checkout-container input[type="email"],
+.checkout-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffe6e6; /* Light red background for inputs */
+    font-size: 16px;
+}
+
+.checkout-container textarea {
+    height: 100px;
+    resize: none;
+}
+
+.checkout-container .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.checkout-container .btn {
+    background-color: #ff6666; /* Soft red for buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.checkout-container .btn:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+.checkout-container .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.checkout-container .success {
+    color: #28a745; /* Green for success message */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.checkout-container .error {
+    color: #dc3545; /* Red for error message */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}

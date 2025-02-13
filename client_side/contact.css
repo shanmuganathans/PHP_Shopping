@@ -1,0 +1,125 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #b34d3a;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navbar a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+}
+
+.navbar a:hover {
+    background-color: #d46958;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Contact Header Section */
+.contact-header {
+    background-image: url('contact-background.jpg'); /* Replace with your background image */
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.contact-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* Contact Form Section */
+.contact-form-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-container h2 {
+    color: #d46958;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+    font-size: 16px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.contact-form button {
+    background-color: #b34d3a;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #d46958;
+}
+
+.contact-info {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #555;
+}
+
+.contact-info .address,
+.contact-info .phone {
+    font-weight: bold;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #b34d3a;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+}

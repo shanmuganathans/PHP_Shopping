@@ -1,0 +1,28 @@
+/* Admin Navigation Links */
+.admin-nav {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.admin-nav a {
+    text-decoration: none;
+    background-color: #b34d3a;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.admin-nav a:hover {
+    background-color: #9f422f;
+}
+
+.logout-btn {
+    background-color: #d9534f;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}

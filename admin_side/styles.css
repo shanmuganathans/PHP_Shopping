@@ -1,0 +1,128 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #b34d3a;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #b34d3a;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #f0e8e8;
+}
+
+/* Action Links (Delete, Back to Dashboard, etc.) */
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+.back-btn {
+    display: inline-block;
+    margin: 10px 0;
+    background-color: #5a9f9d;
+}
+
+.back-btn:hover {
+    background-color: #458e8b;
+}
+
+.delete-btn {
+    background-color: #d9534f;
+    padding: 5px 10px;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Page-specific Buttons */
+.add-btn {
+    background-color: #5cb85c;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.add-btn:hover {
+    background-color: #4cae4c;
+}
+
+/* Error Messages */
+.error-message {
+    color: #d9534f;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Pagination (if needed) */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #b34d3a;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #b34d3a;
+    color: white;
+}

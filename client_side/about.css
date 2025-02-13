@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf5e6; /* Light cream background for a bakery feel */
+    color: #333;
+}
+
+.navbar {
+    background-color: #b34d3a;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navbar a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+}
+
+.navbar a:hover {
+    background-color: #d46958;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.about-header {
+    background-image: url('bakery-about.jpg'); /* Replace with a suitable image */
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.about-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+	color: #d46958;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    color: #d46958;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+.container img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #b34d3a;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+}
+

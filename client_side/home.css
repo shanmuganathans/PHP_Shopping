@@ -1,0 +1,185 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fef8e4; /* Soft pastel yellow */
+    margin: 0;
+    padding: 0;
+    color: #6d4f28; /* Soft brown for text */
+}
+
+/* Header and Navigation */
+header {
+    background-color: #f28ab2; /* Soft pink */
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 5px solid #f8c8d0; /* Light pink border */
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 50;
+    font-family: 'Pacifico', cursive; /* A cute font */
+}
+
+.navbar {
+    background-color:  #f8c8d0;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px 0;
+}
+.navbar a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+}
+.navbar a:hover {
+    background-color: #f28ab2;
+    color: #fff;
+    border-radius: 5px;
+}
+
+
+/* Special Offers Section */
+.special-offers {
+    background-color: #f8c8d0; /* Light pink */
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.special-offers h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Pacifico', cursive;
+    color: #f28ab2;
+}
+
+.special-offers .offer-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.offer {
+    background-color: #fff;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #f8c8d0;
+}
+
+.offer img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border-bottom: 3px solid #f8c8d0;
+}
+
+.offer h3 {
+    font-size: 1.5em;
+    margin-top: 15px;
+    font-family: 'Pacifico', cursive;
+}
+
+.offer p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #f28ab2;
+}
+
+.offer .btn {
+    background-color: #f8c8d0; /* Light pink */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1em;
+    margin-top: 15px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.offer .btn:hover {
+    background-color: #f28ab2;
+}
+
+/* Stay Updated Section */
+.stay-updated {
+    background-color: #fef8e4;
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 5px solid #f8c8d0;
+}
+
+.stay-updated h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Pacifico', cursive;
+    color: #f28ab2;
+}
+
+.stay-updated p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #6d4f28;
+}
+
+.stay-updated input[type="email"] {
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    width: 40%;
+    margin-top: 15px;
+    border: 2px solid #f28ab2;
+}
+
+.stay-updated button {
+    background-color: #f28ab2;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.stay-updated button:hover {
+    background-color: #f8c8d0;
+}
+
+/* Footer */
+footer {
+    background-color: #f28ab2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #f8c8d0;
+}

@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.content-container {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 1200px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1, h2, h3 {
+    color: #b34d3a; /* Warm, bakery-like color */
+}
+
+.banner-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+.product {
+    display: inline-block;
+    width: 30%;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #b34d3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9f422f;
+}
+
+form input, form textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+form button {
+    width: 80%;
+    padding: 10px;
+    background-color: #b34d3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+form button:hover {
+    background-color: #9f422f;
+}
+
+.navbar {
+    background-color: #b34d3a;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navbar a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+}
+
+.navbar a:hover {
+    background-color: #d46958;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
