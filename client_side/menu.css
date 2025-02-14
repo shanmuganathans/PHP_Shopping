@@ -1,8 +1,8 @@
 /* General Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fff7e6; /* Soft pastel background */
-    color: #5a3e20; /* Rich brown for readability */
+    background-color: #fdf1ec; /* Soft peach background */
+    color: #6d4f28; /* Rich brown for readability */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -10,7 +10,7 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background-color: #f8c8d0;
+    background-color: #d46958;
     text-align: center;
     padding: 15px 0;
     position: sticky;
@@ -31,13 +31,13 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #f28ab2;
+    background-color: #b34d3a;
     border-radius: 5px;
 }
 
 /* Header Styling */
 header {
-    background-color: #f28ab2;
+    background-color: #b34d3a;
     color: white;
     padding: 40px;
     font-size: 2rem;
@@ -59,20 +59,20 @@ header {
     font-size: 1.2em;
     width: 70%;
     border-radius: 8px;
-    border: 2px solid #f28ab2;
+    border: 2px solid #b34d3a;
     outline: none;
     transition: all 0.3s ease-in-out;
 }
 
 #search:focus {
-    border-color: #d64f7e;
-    box-shadow: 0 0 8px rgba(242, 138, 178, 0.5);
+    border-color: #d46958;
+    box-shadow: 0 0 8px rgba(212, 103, 88, 0.5);
 }
 
 #searchBtn {
     padding: 12px 20px;
     font-size: 1.1em;
-    background-color: #f28ab2;
+    background-color: #b34d3a;
     color: white;
     border: none;
     border-radius: 8px;
@@ -81,7 +81,7 @@ header {
 }
 
 #searchBtn:hover {
-    background-color: #d64f7e;
+    background-color: #d46958;
 }
 
 /* Menu Section */
@@ -122,13 +122,13 @@ header {
 
 .menu-item h3 {
     font-size: 1.2em;
-    color: #f28ab2;
+    color: #b34d3a;
     margin-top: 15px;
 }
 
 /* Footer */
 footer {
-    background-color: #f28ab2;
+    background-color: #b34d3a;
     color: white;
     padding: 15px;
     width: 100%;

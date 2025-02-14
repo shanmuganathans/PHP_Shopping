@@ -41,6 +41,7 @@ $conn->close();
         <!-- Navigation links -->
         <nav class="admin-nav">
             <a href="view_orders.php">View Orders</a>
+            <a href="profit.php">Profit Report</a>
             <a href="manage_users.php">Manage Users</a>
             <a href="view_messages.php">View Messages</a>
             <a href="logout.php" class="logout-btn">Logout</a>

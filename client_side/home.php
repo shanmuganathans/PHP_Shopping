@@ -25,6 +25,7 @@ $username = htmlspecialchars($_SESSION['username']); // Prevent XSS
         <a href="home.php">Home</a>
         <a href="menu.php">Menu</a>
         <a href="shop.php">Shop</a>
+        <a href="my_orders.php">My Orders</a>
         <a href="about.php">About Us</a>
         <a href="contact.php">Contact Us</a>
         <a href="logout.php">Logout</a>

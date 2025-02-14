@@ -1,0 +1,94 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf1ec; /* Soft peach background */
+    color: #6d4f28; /* Rich brown for readability */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+    color: #b34d3a;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #d46958;
+    font-size: 1.4rem;
+    margin-top: 20px;
+}
+
+/* Order Information */
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #6d4f28;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #b34d3a;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fdf1ec;
+}
+
+tbody tr:hover {
+    background-color: #f8d4c4;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    background-color: #b34d3a;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+.back-btn:hover {
+    background-color: #d46958;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+}

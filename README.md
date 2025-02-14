@@ -84,6 +84,34 @@ CREATE TABLE contact_messages (
     date_submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
+
+#### **🔸 Orders Table**
+```sql
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address TEXT NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+#### **🔸 Order Items Table**
+```sql
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    item_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    item_price DECIMAL(10,2) NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+```
+
 #### **🔸 AdminUsers Table**
 ```sql
 CREATE TABLE admin_users (

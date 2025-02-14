@@ -22,6 +22,7 @@ $username = htmlspecialchars($_SESSION['username']); // Prevent XSS attacks
         <a href="home.php">Home</a>
         <a href="menu.php">Menu</a>
         <a href="shop.php">Shop</a>
+        <a href="my_orders.php">My Orders</a>
         <a href="about.php" class="active">About Us</a>
         <a href="contact.php">Contact Us</a>
         <a href="logout.php">Logout</a>
@@ -38,7 +39,7 @@ $username = htmlspecialchars($_SESSION['username']); // Prevent XSS attacks
         <p>Our bakery is a reflection of my love for baking — a place where every cake, pastry, and sweet treat is made with care, love, and the finest ingredients. Whether you're here for a simple slice of cake or looking for something special for a celebration, we promise to deliver the freshest and most delicious items that will leave you coming back for more.</p>
         <p>Thank you for being a part of our journey. We’re thrilled to share our passion with you and can’t wait to serve you the most delightful baked goods made with love!</p>
 
-        <img src="images/our-team.jpg" alt="Our Bakery Team" class="about-image">
+        <img src="images/our_team.jpg" alt="Our Bakery Team" class="about-image">
     </div>
 
     <footer class="footer">

@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['id']; // Store user ID for better tracking
+                $_SESSION['loggedInUserEmail'] = $user['email'];// Store email in session
                 header("Location: home.php");
                 exit();
             } else {

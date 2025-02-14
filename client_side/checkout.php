@@ -2,19 +2,6 @@
 include 'db.php';
 session_start();
 
-// Database connection
-$servername = "localhost";
-$username = "root"; 
-$password = "root@123";     
-$dbname = "register";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Ensure the cart exists
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     echo "<p>Your cart is empty. <a href='shop.php'>Return to shop</a></p>";
@@ -43,24 +30,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $total_price += $item['price'] * $item['quantity'];
             }
 
-            // Insert order using prepared statement
+            // Insert order into `orders` table
             $stmt = $conn->prepare("INSERT INTO orders (customer_name, email, phone, address, total_amount, order_date) VALUES (?, ?, ?, ?, ?, NOW())");
             $stmt->bind_param("ssssd", $customer_name, $email, $phone, $address, $total_price);
 
             if ($stmt->execute()) {
+                $order_id = $stmt->insert_id; // Get last inserted order ID
+
+                // Insert each item into `order_items` table
+                $stmt_items = $conn->prepare("INSERT INTO order_items (order_id, item_name, quantity, item_price, total_price,order_date) VALUES (?, ?, ?, ?, ?,NOW())");
+
+                foreach ($_SESSION['cart'] as $item) {
+                    $item_name = $item['name'];
+                    $quantity = $item['quantity'];
+                    $item_price = $item['price'];
+                    $item_total = $quantity * $item_price;
+
+                    $stmt_items->bind_param("isidd", $order_id, $item_name, $quantity, $item_price, $item_total);
+                    $stmt_items->execute();
+                }
+
+                // Clear cart after order is placed
+                $_SESSION['cart'] = [];
                 $order_placed = true;
-                $_SESSION['cart'] = []; // Clear cart after successful order
             } else {
                 $error_message = "Error placing order: " . $stmt->error;
             }
 
+            // Close statements
             $stmt->close();
+            $stmt_items->close();
         }
     } else {
         $error_message = "Please fill in all required fields.";
     }
 }
 
+// Close database connection
 $conn->close();
 ?>
 

@@ -21,22 +21,33 @@ if ($conn->connect_error) {
 }
 
 // Handle adding items to the cart
+// Handle adding items to the cart
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $item_name = filter_input(INPUT_POST, 'item_name', FILTER_SANITIZE_STRING);
     $item_price = filter_input(INPUT_POST, 'item_price', FILTER_VALIDATE_FLOAT);
     $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
 
     if ($item_name && $item_price && $quantity && $quantity > 0) {
-        // Add item to the session cart
-        $_SESSION['cart'][] = [
-            'name' => $item_name,
-            'quantity' => $quantity,
-            'price' => $item_price,
-        ];
+        // Check if item already exists in the session cart
+        $found = false;
+        foreach ($_SESSION['cart'] as &$cart_item) {
+            if ($cart_item['name'] === $item_name) {
+                $cart_item['quantity'] += $quantity;
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            $_SESSION['cart'][] = [
+                'name' => $item_name,
+                'quantity' => $quantity,
+                'price' => $item_price,
+            ];
+        }
 
         // Store item in the database
-        $stmt = $conn->prepare("INSERT INTO cart (name, quantity, price) VALUES (?, ?, ?)");
-        $stmt->bind_param("sii", $item_name, $quantity, $item_price);
+        $stmt = $conn->prepare("INSERT INTO cart (name, quantity, price) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)");
+        $stmt->bind_param("sdi", $item_name, $quantity, $item_price);
 
         if (!$stmt->execute()) {
             die("Error adding item to database: " . $stmt->error);
@@ -69,6 +80,7 @@ $conn->close();
     <a href="home.php">Home</a>
     <a href="menu.php">Menu</a>
     <a href="shop.php">Shop</a>
+    <a href="my_orders.php">My Orders</a>
     <a href="about.php">About Us</a>
     <a href="contact.php">Contact Us</a>
     <a href="logout.php">Logout</a>

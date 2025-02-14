@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error_message = "Invalid email format.";
     } else {
         // Insert into database
-        $stmt = $conn->prepare("INSERT INTO contact_messages (name, email, subject, message, date_submitted) VALUES (?, ?, ?, ?, NOW())");
+        $stmt = $conn->prepare("INSERT INTO contact_messages (name, email, subject, message, submitted_at) VALUES (?, ?, ?, ?, NOW())");
         $stmt->bind_param("ssss", $name, $email, $subject, $message);
 
         if ($stmt->execute()) {
@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="home.php">Home</a>
         <a href="menu.php">Menu</a>
         <a href="shop.php">Shop</a>
+        <a href="my_orders.php">My Orders</a>
         <a href="about.php">About Us</a>
         <a href="contact.php">Contact Us</a>
         <a href="logout.php">Logout</a>
