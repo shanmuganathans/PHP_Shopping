@@ -44,6 +44,7 @@ $conn->close();
             <a href="profit.php">Profit Report</a>
             <a href="manage_users.php">Manage Users</a>
             <a href="view_messages.php">View Messages</a>
+            <a href="view_feedbacks.php">View Feedbacks</a>
             <a href="logout.php" class="logout-btn">Logout</a>
         </nav>
     </div>

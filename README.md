@@ -111,6 +111,15 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
 ```
+#### **🔸 Feedbacks Table**
+```sql
+CREATE TABLE feedbacks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    feedback TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
 #### **🔸 AdminUsers Table**
 ```sql

@@ -298,3 +298,57 @@ footer a:hover {
         width: 80%;
     }
 }
+/* Feedback Button */
+.feedback-btn {
+    background-color: #5a9f9d;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.feedback-btn:hover {
+    background-color: #458e8b;
+}
+
+/* Testimonials Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background: #ccc;
+}
+
+/* Review Page */
+.review-container {
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.review-container textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.save-btn, .delete-btn {
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}

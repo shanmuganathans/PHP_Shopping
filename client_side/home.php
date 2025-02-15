@@ -1,4 +1,6 @@
 <?php
+include 'db.php';
+
 session_start();
 
 // Redirect to login if user is not logged in
@@ -8,6 +10,18 @@ if (!isset($_SESSION['username'])) {
 }
 
 $username = htmlspecialchars($_SESSION['username']); // Prevent XSS
+// Fetch user feedback
+$feedback_query = "SELECT id, feedback FROM feedbacks WHERE username = ?";
+$stmt = $conn->prepare($feedback_query);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($feedback_id, $user_feedback);
+$stmt->fetch();
+$stmt->close();
+
+// Fetch latest feedbacks for display
+$latest_feedbacks_query = "SELECT username, feedback FROM feedbacks ORDER BY id DESC LIMIT 5";
+$latest_feedbacks = $conn->query($latest_feedbacks_query);
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +89,56 @@ $username = htmlspecialchars($_SESSION['username']); // Prevent XSS
         <p>Opened during the challenging times of the COVID-19 pandemic, our bakery has become a haven for all things sweet! With a passion for baking since my early years, I decided to turn my dream into a reality. Every product here is made with love and care, using only the finest ingredients. <a href="about.php">Learn more about our story</a>.</p>
     </section>
 
-    <!-- Customer Testimonials -->
+    <!-- Testimonials Section with Conditional Pagination -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <a href="review.php" class="feedback-btn">
+            <?= ($user_feedback) ? "Edit Review" : "Write Review"; ?>
+        </a>
+        <div id="feedback-list">
+            <?php
+            // Pagination Logic
+            $limit = 5; // Number of reviews per page
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $offset = ($page - 1) * $limit;
+
+            // Get Total Feedback Count
+            $total_feedbacks_query = "SELECT COUNT(*) AS total FROM feedbacks";
+            $total_result = $conn->query($total_feedbacks_query);
+            $total_feedbacks = $total_result->fetch_assoc()['total'];
+            $total_pages = ceil($total_feedbacks / $limit);
+
+            // Fetch Feedback for the Current Page
+            $paginated_feedbacks_query = "SELECT username, feedback FROM feedbacks ORDER BY id DESC LIMIT $limit OFFSET $offset";
+            $paginated_feedbacks = $conn->query($paginated_feedbacks_query);
+
+            while ($row = $paginated_feedbacks->fetch_assoc()):
+            ?>
+                <div class="testimonial">
+                    <p>"<?= htmlspecialchars($row['feedback']) ?>"</p>
+                    <p>- <?= htmlspecialchars($row['username']) ?></p>
+                </div>
+            <?php endwhile; ?>
+        </div>
+
+        <!-- Show Pagination Controls Only If More Than One Page -->
+        <?php if ($total_pages > 1): ?>
+            <div class="pagination">
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?= $page - 1 ?>">&laquo; Previous</a>
+                <?php endif; ?>
+                
+                <span>Page <?= $page ?> of <?= $total_pages ?></span>
+
+                <?php if ($page < $total_pages): ?>
+                    <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </section>
+
+
+    <!-- Customer Testimonials
     <section class="testimonials">
         <h2>What Our Customers Say</h2>
         <div class="testimonial-slider">
@@ -92,7 +155,7 @@ $username = htmlspecialchars($_SESSION['username']); // Prevent XSS
                 <p>- Priya</p>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Special Offers -->
     <section class="special-offers">
@@ -147,6 +210,63 @@ $username = htmlspecialchars($_SESSION['username']); // Prevent XSS
     <div class="footer">
         &copy; 2025 Our Bakery. All rights reserved.
     </div>
+    <script>
+    function openFeedbackModal() {
+        document.getElementById('feedbackModal').style.display = 'block';
+    }
+
+    function closeFeedbackModal() {
+        document.getElementById('feedbackModal').style.display = 'none';
+    }
+
+    function saveFeedback() {
+        let feedbackText = document.getElementById('feedbackText').value;
+        let feedbackId = document.getElementById('feedbackId').value;
+
+        fetch('save_feedback.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `feedback_text=${encodeURIComponent(feedbackText)}&feedback_id=${feedbackId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                updateFeedbackList(data.feedbacks);
+                closeFeedbackModal();
+            } else {
+                alert("Error saving feedback.");
+            }
+        });
+    }
+
+    function deleteFeedback() {
+        let feedbackId = document.getElementById('feedbackId').value;
+
+        fetch('delete_feedback.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `feedback_id=${feedbackId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                updateFeedbackList(data.feedbacks);
+                closeFeedbackModal();
+            } else {
+                alert("Error deleting feedback.");
+            }
+        });
+    }
+
+    function updateFeedbackList(feedbacks) {
+        let feedbackList = document.getElementById('feedback-list');
+        feedbackList.innerHTML = '';
+        feedbacks.forEach(feedback => {
+            feedbackList.innerHTML += `<div class="testimonial"><p>"${feedback.feedback}"</p><p>- ${feedback.username}</p></div>`;
+        });
+    }
+</script>
+
 
 </body>
 </html>
