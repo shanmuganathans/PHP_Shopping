@@ -1,8 +1,8 @@
 /* General Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #fdf1ec; /* Soft peach background */
-    color: #6d4f28; /* Rich brown for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Changed to match previous styles */
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Dark text for readability */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -10,7 +10,7 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background-color: #d46958;
+    background-color: #2980b9; /* Adjusted to match shop.css */
     text-align: center;
     padding: 15px 0;
     position: sticky;
@@ -31,13 +31,13 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #b34d3a;
+    background-color: #3498db; /* Lighter blue on hover */
     border-radius: 5px;
 }
 
 /* Header Styling */
 header {
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Adjusted to match shop.css */
     color: white;
     padding: 40px;
     font-size: 2rem;
@@ -59,20 +59,20 @@ header {
     font-size: 1.2em;
     width: 70%;
     border-radius: 8px;
-    border: 2px solid #b34d3a;
+    border: 2px solid #2980b9; /* Adjusted to match blue theme */
     outline: none;
     transition: all 0.3s ease-in-out;
 }
 
 #search:focus {
-    border-color: #d46958;
-    box-shadow: 0 0 8px rgba(212, 103, 88, 0.5);
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5); /* Lighter blue on focus */
 }
 
 #searchBtn {
     padding: 12px 20px;
     font-size: 1.1em;
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Adjusted to match blue theme */
     color: white;
     border: none;
     border-radius: 8px;
@@ -81,7 +81,7 @@ header {
 }
 
 #searchBtn:hover {
-    background-color: #d46958;
+    background-color: #3498db; /* Lighter blue on hover */
 }
 
 /* Menu Section */
@@ -122,13 +122,13 @@ header {
 
 .menu-item h3 {
     font-size: 1.2em;
-    color: #b34d3a;
+    color: #2980b9; /* Adjusted heading color to match blue theme */
     margin-top: 15px;
 }
 
 /* Footer */
 footer {
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Adjusted to match blue theme */
     color: white;
     padding: 15px;
     width: 100%;

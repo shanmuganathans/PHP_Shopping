@@ -1,8 +1,8 @@
 /* General Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #fdf1ec; /* Soft peach background */
-    color: #6d4f28; /* Rich brown for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Changed to match shop.css font */
+    background-color: #f0f8ff; /* Light blue background to match shop.css */
+    color: #333; /* Dark text for readability */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -15,18 +15,18 @@ body {
     background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adjusted box shadow to be more consistent */
 }
 
 /* Headings */
 h1 {
-    color: #b34d3a;
+    color: #5c9fdb; /* Light blue color for heading */
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
 h3 {
-    color: #d46958;
+    color: #2980b9; /* Medium blue for subheading */
     font-size: 1.4rem;
     margin-top: 20px;
 }
@@ -35,7 +35,7 @@ h3 {
 p {
     font-size: 1.1em;
     line-height: 1.6;
-    color: #6d4f28;
+    color: #333; /* Dark text for better readability */
 }
 
 /* Table Styling */
@@ -46,7 +46,7 @@ table {
 }
 
 thead {
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Blue background for the table header */
     color: white;
 }
 
@@ -57,11 +57,11 @@ th, td {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #fdf1ec;
+    background-color: #f9f9f9; /* Lighter background for even rows */
 }
 
 tbody tr:hover {
-    background-color: #f8d4c4;
+    background-color: #f1e1d1; /* Subtle hover effect matching shop.css */
 }
 
 /* Back Button */
@@ -70,7 +70,7 @@ tbody tr:hover {
     margin-top: 20px;
     padding: 12px 20px;
     font-size: 1.1em;
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Blue background for back button */
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -78,7 +78,7 @@ tbody tr:hover {
 }
 
 .back-btn:hover {
-    background-color: #d46958;
+    background-color: #3498db; /* Lighter blue on hover */
 }
 
 /* Responsive Design */

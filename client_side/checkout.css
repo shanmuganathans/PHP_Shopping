@@ -8,14 +8,14 @@ body, h1, h2, h3, p, ul, li, table {
 
 /* Page Background */
 body {
-    background-color: #fff5f5; /* Soft pink background */
+    background-color: #f0f8ff; /* Soft light blue background */
     color: #333;
     line-height: 1.6;
 }
 
 /* Navbar Styles */
 .navbar {
-    background-color: #cc0000; /* Deep red */
+    background-color: #2980b9; /* Soft blue */
     display: flex;
     justify-content: center;
     padding: 12px 0;
@@ -31,7 +31,7 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #990000;
+    background-color: #3498db; /* Lighter blue */
     transform: scale(1.05);
     border-radius: 5px;
 }
@@ -48,7 +48,7 @@ body {
 
 .checkout-container h2 {
     text-align: center;
-    color: #b30000; /* Dark red */
+    color: #3498db; /* Light blue */
     margin-bottom: 25px;
 }
 
@@ -67,13 +67,13 @@ body {
 }
 
 .checkout-container table th {
-    background-color: #cc0000; /* Match navbar */
+    background-color: #2980b9; /* Soft blue */
     color: white;
     font-weight: bold;
 }
 
 .checkout-container table td {
-    background-color: #fff0f0; /* Light pink rows */
+    background-color: #f0f8ff; /* Light blue rows */
 }
 
 /* Total Amount */
@@ -82,7 +82,7 @@ body {
     text-align: right;
     margin-top: 10px;
     font-size: 20px;
-    color: #b30000;
+    color: #2980b9; /* Soft blue */
 }
 
 /* Form Styles */
@@ -94,7 +94,7 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #b30000;
+    color: #2980b9; /* Soft blue */
 }
 
 .checkout-container input[type="text"],
@@ -106,14 +106,14 @@ body {
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fff0f0;
+    background-color: #f0f8ff; /* Light blue */
     font-size: 16px;
     transition: border-color 0.3s;
 }
 
 .checkout-container input:focus,
 .checkout-container textarea:focus {
-    border-color: #cc0000;
+    border-color: #3498db; /* Lighter blue */
     outline: none;
 }
 
@@ -126,7 +126,7 @@ body {
 }
 
 .checkout-container .btn {
-    background-color: #ff4d4d;
+    background-color: #3498db; /* Light blue button */
     color: white;
     padding: 12px 18px;
     border: none;
@@ -139,7 +139,7 @@ body {
 }
 
 .checkout-container .btn:hover {
-    background-color: #e60000;
+    background-color: #2980b9; /* Soft blue on hover */
     transform: scale(1.05);
 }
 

@@ -1,124 +1,116 @@
-/* General Reset */
+/* General Styles */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
 
-/* Body Styling */
+/* Body */
 body {
-    background: linear-gradient(135deg, #f8c8d0, #f4f4f9);
+    background: linear-gradient(135deg, #0066cc, #00bfff);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: #fff;
 }
 
-/* Login Form Container */
+/* Form Container */
 .form-container {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
     text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Title */
 h2 {
-    color: #333333;
-    font-size: 24px;
+    color: #333;
     margin-bottom: 20px;
-}
-
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
+    font-size: 24px;
 }
 
 /* Input Fields */
-input {
-    margin-bottom: 15px;
+input[type="text"],
+input[type="password"] {
+    width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 16px;
-    transition: 0.3s;
+    color: #333;
 }
 
-/* Focus Effect */
-input:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #00bfff;
     outline: none;
-    border-color: #f28ab2;
-    box-shadow: 0 0 5px rgba(242, 138, 178, 0.5);
 }
 
-/* Button Styling */
-button {
-    padding: 12px;
+/* Submit Button */
+button[type="submit"] {
+    background: #0066cc;
+    color: #fff;
     border: none;
-    border-radius: 6px;
-    background-color: #f28ab2;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 14px 20px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
+    width: 100%;
+    transition: background 0.3s ease;
 }
 
-/* Button Hover */
-button:hover {
-    background-color: #d77a9d;
+button[type="submit"]:hover {
+    background: #005bb5;
 }
 
-/* Error Message Styling */
+/* Error message */
 .error {
-    color: #d9534f;
-    background: #fce8e6;
-    padding: 10px;
-    border: 1px solid #d9534f;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    color: #ff4d4d;
     font-size: 14px;
+    margin-bottom: 20px;
 }
 
-/* Paragraph & Links */
+/* Register Link */
 p {
     margin-top: 15px;
     font-size: 14px;
+    color: #333;
 }
 
-a {
-    color: #007bff;
+p a {
+    color: #0066cc;
     text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
 }
 
-a:hover {
+p a:hover {
     text-decoration: underline;
-    color: #0056b3;
 }
 
 /* Responsive Design */
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .form-container {
-        width: 90%;
         padding: 20px;
     }
-}
 
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
+    h2 {
+        font-size: 20px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    input[type="text"],
+    input[type="password"] {
+        font-size: 14px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 12px;
     }
 }

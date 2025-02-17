@@ -22,6 +22,11 @@ $stmt->close();
 // Fetch latest feedbacks for display
 $latest_feedbacks_query = "SELECT username, feedback FROM feedbacks ORDER BY id DESC LIMIT 5";
 $latest_feedbacks = $conn->query($latest_feedbacks_query);
+
+// Fetch latest 3 items from the items table
+$latest_items_query = "SELECT name, price, image FROM items ORDER BY created_at DESC LIMIT 3";
+$latest_items = $conn->query($latest_items_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +67,25 @@ $latest_feedbacks = $conn->query($latest_feedbacks_query);
     <section class="featured-products">
         <h2>Featured Products</h2>
         <div class="product-list">
+            <?php while ($item = $latest_items->fetch_assoc()): ?>
+                <div class="product">
+                <img src="/uploads/<?= htmlspecialchars($item['image']) ?>" 
+     alt="<?= htmlspecialchars($item['name']) ?>" 
+     width="275" height="280" loading="lazy">
+
+                    <h3><?= htmlspecialchars($item['name']) ?></h3>
+                    <p>₹<?= number_format($item['price'], 2) ?></p>
+                    <a href="shop.php" class="btn">Shop Now</a>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    </section>
+
+
+    <!-- Featured Products
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-list">
             <div class="product">
                 <img src="../images/gulab_juman_cake.jpg" alt="Gulab Jamun Cake" width="276" height="285" loading="lazy">
                 <h3>Gulab Jamun Cake</h3>
@@ -81,7 +105,7 @@ $latest_feedbacks = $conn->query($latest_feedbacks_query);
                 <a href="shop.php" class="btn">Shop Now</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- About Us Teaser -->
     <section class="about-us">

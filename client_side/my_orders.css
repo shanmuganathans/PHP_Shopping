@@ -2,8 +2,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #fdf1ec; /* Soft peach background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff; /* Light blue background matching shop.css */
     color: #333;
     line-height: 1.6;
     text-align: center;
@@ -11,7 +11,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: #b34d3a; /* Deep warm brown */
+    background-color: #2980b9; /* Medium blue navbar background */
     display: flex;
     justify-content: center;
     padding: 12px 0;
@@ -28,14 +28,14 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #d46958;
+    background-color: #3498db; /* Lighter blue for hover */
     transform: scale(1.05);
     border-radius: 5px;
 }
 
 /* Page Heading */
 h2 {
-    color: #b34d3a;
+    color: #5c9fdb; /* Light blue color for headings matching shop.css */
     font-size: 32px;
     margin-top: 20px;
 }
@@ -58,7 +58,7 @@ th, td {
 }
 
 th {
-    background-color: #b34d3a; /* Deep warm brown */
+    background-color: #2980b9; /* Blue background for table header */
     color: white;
     font-size: 18px;
 }
@@ -68,16 +68,16 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #fdf1ec;
+    background-color: #f9f9f9; /* Light background for even rows */
 }
 
 tr:hover {
-    background-color: #f8d3c5;
+    background-color: #f1e1d1; /* Subtle hover effect matching shop.css */
 }
 
 /* View Order Link */
 td a {
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Medium blue for the view order link */
     color: white;
     padding: 8px 14px;
     text-decoration: none;
@@ -87,14 +87,14 @@ td a {
 }
 
 td a:hover {
-    background-color: #d46958;
+    background-color: #3498db; /* Lighter blue for hover */
     transform: scale(1.05);
 }
 
 /* No Orders Message */
 p {
     font-size: 20px;
-    color: #b34d3a;
+    color: #5c9fdb; /* Light blue to match heading color */
     margin-top: 20px;
     font-weight: bold;
 }
@@ -103,7 +103,7 @@ p {
 .footer {
     text-align: center;
     padding: 15px;
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Blue background for the footer */
     color: white;
     font-size: 14px;
     margin-top: 25px;

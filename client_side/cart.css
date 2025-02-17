@@ -1,15 +1,15 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fdf5e6; /* Warm bakery-themed background */
+    background-color: #f0f8ff; /* Light blue background */
     color: #333;
 }
 
 /* Navigation Bar */
 .navbar {
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Updated navbar color to match home.css */
     padding: 12px 0;
     text-align: center;
 }
@@ -24,7 +24,7 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #d46958;
+    background-color: #3498db; /* Lighter blue on hover */
     border-radius: 5px;
 }
 
@@ -39,7 +39,7 @@ body {
 }
 
 .cart-container h2 {
-    color: #b34d3a;
+    color: #5c9fdb; /* Updated heading color to match home.css */
     text-align: center;
     font-size: 28px;
     font-weight: bold;
@@ -54,7 +54,7 @@ table {
 }
 
 table thead {
-    background-color: #b34d3a;
+    background-color: #2980b9; /* Blue header color */
     color: white;
     font-size: 18px;
 }
@@ -70,7 +70,7 @@ table tbody tr:nth-child(even) {
 }
 
 table tbody tr:hover {
-    background-color: #f1e1d1;
+    background-color: #e1f1ff; /* Light blue background on hover */
     transition: 0.3s ease-in-out;
 }
 
@@ -80,6 +80,7 @@ table tbody tr:hover {
     font-size: 20px;
     font-weight: bold;
     margin: 20px 0;
+    color: #2980b9; /* Blue color for total price */
 }
 
 /* Action Buttons */
@@ -102,12 +103,12 @@ table tbody tr:hover {
 
 /* Checkout & Return Buttons */
 .checkout-btn {
-    background-color: #b34d3a;
+    background-color: #3498db; /* Blue checkout button */
     color: white;
 }
 
 .checkout-btn:hover {
-    background-color: #d46958;
+    background-color: #2980b9; /* Darker blue on hover */
 }
 
 /* Remove & Reduce Buttons */

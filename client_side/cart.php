@@ -25,9 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'], $_POST['pro
         }
     }
 
-    // If cart is empty after removal, destroy session cart
+    // If cart is empty after removal, destroy session cart and redirect to shop.php
     if (empty($_SESSION['cart'])) {
         unset($_SESSION['cart']);
+        header("Location: shop.php");
+        exit;
     }
 
     header("Location: cart.php");
@@ -45,9 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'], $_POST
         }
     }
 
-    // If cart is empty after removal, destroy session cart
+    // If cart is empty after removal, destroy session cart and redirect to shop.php
     if (empty($_SESSION['cart'])) {
         unset($_SESSION['cart']);
+        header("Location: shop.php");
+        exit;
     }
 
     header("Location: cart.php");
