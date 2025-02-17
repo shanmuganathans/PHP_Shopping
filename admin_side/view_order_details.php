@@ -53,12 +53,32 @@ $item_result = $item_stmt->get_result();
         <h1>Order Details</h1>
 
         <h3>Order Information</h3>
-        <p><strong>Name:</strong> <?php echo htmlspecialchars($order['customer_name']); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($order['email']); ?></p>
-        <p><strong>Phone:</strong> <?php echo htmlspecialchars($order['phone']); ?></p>
-        <p><strong>Address:</strong> <?php echo htmlspecialchars($order['address']); ?></p>
-        <p><strong>Total Amount:</strong> ₹ <?php echo number_format($order['total_amount'], 2); ?></p>
-        <p><strong>Order Date:</strong> <?php echo date("Y-m-d H:i:s", strtotime($order['order_date'])); ?></p>
+        <table class="order-info">
+            <tr>
+                <th>Name:</th>
+                <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><?php echo htmlspecialchars($order['email']); ?></td>
+            </tr>
+            <tr>
+                <th>Phone:</th>
+                <td><?php echo htmlspecialchars($order['phone']); ?></td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td><?php echo htmlspecialchars($order['address']); ?></td>
+            </tr>
+            <tr>
+                <th>Total Amount:</th>
+                <td>₹ <?php echo number_format($order['total_amount'], 2); ?></td>
+            </tr>
+            <tr>
+                <th>Order Date:</th>
+                <td><?php echo date("Y-m-d H:i:s", strtotime($order['order_date'])); ?></td>
+            </tr>
+        </table>
 
         <h3>Ordered Items</h3>
         <table>

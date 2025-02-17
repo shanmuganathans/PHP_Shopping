@@ -45,6 +45,7 @@ $conn->close();
             <a href="manage_users.php">Manage Users</a>
             <a href="view_messages.php">View Messages</a>
             <a href="view_feedbacks.php">View Feedbacks</a>
+            <a href="menu.php">View Menus</a>
             <a href="logout.php" class="logout-btn">Logout</a>
         </nav>
     </div>

@@ -33,7 +33,7 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Orders</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="view_orders.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -78,7 +78,6 @@ $result = $stmt->get_result();
     <?php 
     // Close database connection
     $stmt->close();
-    $conn->close();
     ?>
 </body>
 </html>

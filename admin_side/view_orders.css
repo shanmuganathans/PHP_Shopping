@@ -10,9 +10,9 @@ body {
 .dashboard-container {
     width: 80%;
     margin: 30px auto;
-    background: #fff; /* White background for the content area */
+    background: #fff; /* White background for content area */
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Soft shadow around the container */
     border-radius: 10px;
     text-align: center;
 }
@@ -24,37 +24,14 @@ h1 {
     font-size: 2rem;
 }
 
-h3 {
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
-/* Order Information Table */
-.order-info {
+/* Table Container */
+.table-container {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    font-size: 1.2rem;
-    text-align: left;
+    overflow-x: auto; /* Ensure table is scrollable on smaller screens */
+    margin-top: 20px;
 }
 
-.order-info th {
-    background-color: #007bff; /* Blue background for headers */
-    color: white;
-    padding: 10px;
-}
-
-.order-info td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd; /* Light grey border */
-}
-
-.order-info th, .order-info td {
-    text-align: left;
-}
-
-/* Table Styling for Ordered Items */
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -75,11 +52,28 @@ table th {
 }
 
 table tr:nth-child(even) {
-    background-color: #f2f2f2; /* Grey for alternating rows */
+    background-color: #f2f2f2; /* Slight grey for alternating rows */
 }
 
 table tr:hover {
-    background-color: #e1e1e1; /* Light hover effect */
+    background-color: #e1e1e1; /* Light hover effect for rows */
+}
+
+/* Action Button Styling */
+.details-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #28a745; /* Green color for "View Details" button */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+    background-color: #218838; /* Darker green on hover */
 }
 
 /* Back Button Styling */
@@ -87,7 +81,7 @@ table tr:hover {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 20px;
-    background-color: #6c757d; /* Grey for back button */
+    background-color: #6c757d; /* Grey background for back button */
     color: white;
     font-size: 16px;
     text-align: center;
@@ -111,20 +105,11 @@ table tr:hover {
         font-size: 1.5rem; /* Adjust title size for smaller screens */
     }
 
-    h3 {
-        font-size: 1.2rem; /* Adjust subtitle size */
-    }
-
     table {
         font-size: 0.9rem; /* Smaller font for tables on mobile */
     }
 
-    .order-info td,
-    .order-info th {
-        font-size: 1rem; /* Adjust font size for order info table */
-    }
-
-    .back-btn {
+    .details-btn, .back-btn {
         padding: 10px 15px;
         font-size: 1rem;
     }

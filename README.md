@@ -10,6 +10,7 @@ Setting it up locally with a MySQL database.
 Ensure you have PHP, MySQL, and required extensions installed.
 
 ### **🔹 Install PHP & MySQL**
+
 Run:
 ```bash
 sudo apt update
@@ -50,6 +51,22 @@ USE register;
 
 ### **🔹 Create Tables**
 Based on your code (`db.php`, `register.php`, `cart.php`, `submit_contact.php`), create the required tables:
+
+### ** Table Namees:
+```sql
+mysql> show tables;
++--------------------+
+| Tables_in_register |
++--------------------+
+| admin_users        |
+| cart               |
+| contact_messages   |
+| feedbacks          |
+| order_items        |
+| orders             |
+| users              |
++--------------------+
+```
 
 #### **🔸 Users Table**
 ```sql
@@ -121,6 +138,18 @@ CREATE TABLE feedbacks (
 );
 ```
 
+#### **🔸 Menu Items Table**
+```sql
+CREATE TABLE items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    category ENUM('Cake', 'Sweets', 'Cookies & Biscuits') NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
 #### **🔸 AdminUsers Table**
 ```sql
 CREATE TABLE admin_users (
@@ -169,7 +198,7 @@ include 'db.php';
 
 ---
 
-## **4️⃣ Start PHP Local Server**
+### **🔹 Start PHP Local Server**
 ### **🔹 Navigate to Your Project Folder**
 ```bash
 cd /path/to/client_site
@@ -183,24 +212,26 @@ php -S localhost:8000
 ### **🔹 Open in Browser**
 Go to:
 ```
-http://localhost:8000/home.php
+http://localhost:8000/login.php
 ```
-
-If your `index.php` is missing, manually open `home.php`.
 
 ---
 
 ## **5️⃣ Debugging Issues**
+
 If you get **"The requested resource / was not found"**, try:
 ```bash
 php -S localhost:8000 -t .
 ```
-Or manually navigate to `http://localhost:8000/home.php`.
+
+Or manually navigate to `http://localhost:8000/login.php`.
 
 If MySQL errors appear, ensure:
+
 ```bash
 sudo systemctl start mysql
 ```
+
 And check `db.php` for correct credentials.
 
 ---
@@ -295,6 +326,6 @@ php -S localhost:8000
 ```
 Now, open:
 ```
-http://localhost:8000/home.php
+http://localhost:8000/login.php
 ```
 If you still have issues, let me know the exact error message.

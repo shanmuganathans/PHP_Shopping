@@ -1,0 +1,150 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Title */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Add Button (Placing before the category filter) */
+.add-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    position: relative;
+    left: -38%;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+/* Category Filter */
+.category-filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.category-filter label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.category-filter select,
+.category-filter button {
+    padding: 8px;
+    font-size: 16px;
+}
+
+.category-filter button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.category-filter button:hover {
+    background-color: #0056b3;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Table Image */
+table img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Action Buttons */
+.edit-btn,
+.delete-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 2px;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: black;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Back Button */
+.back-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 20px;
+    width: 200px;
+    background-color: #6c757d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+}

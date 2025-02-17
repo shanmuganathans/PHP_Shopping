@@ -47,7 +47,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="manage_users.css">
     <script>
         function confirmDeletion(userId) {
             if (confirm("Are you sure you want to delete this user?")) {

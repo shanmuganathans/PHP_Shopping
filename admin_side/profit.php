@@ -13,19 +13,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get Daily Profit
-$daily_sql = "SELECT DATE(order_date) AS date, SUM(total_amount) AS daily_profit FROM orders GROUP BY DATE(order_date)";
+// Get current date, month, and year
+$current_date = date('Y-m-d');
+$current_month = date('Y-m');
+$current_year = date('Y');
+
+// Get Daily Profit (current day only)
+$daily_sql = "SELECT DATE(order_date) AS date, SUM(total_amount) AS daily_profit FROM orders WHERE DATE(order_date) = '$current_date' GROUP BY DATE(order_date)";
 $daily_result = $conn->query($daily_sql);
 
-// Get Monthly Profit
-$monthly_sql = "SELECT YEAR(order_date) AS year, MONTH(order_date) AS month, SUM(total_amount) AS monthly_profit FROM orders GROUP BY YEAR(order_date), MONTH(order_date)";
+// Get Monthly Profit (current month only)
+$monthly_sql = "SELECT YEAR(order_date) AS year, MONTH(order_date) AS month, SUM(total_amount) AS monthly_profit 
+                FROM orders 
+                WHERE DATE_FORMAT(order_date, '%Y-%m') = '$current_month' 
+                GROUP BY YEAR(order_date), MONTH(order_date)";
 $monthly_result = $conn->query($monthly_sql);
 
-// Get Yearly Profit
-$yearly_sql = "SELECT YEAR(order_date) AS year, SUM(total_amount) AS yearly_profit FROM orders GROUP BY YEAR(order_date)";
+// Get Yearly Profit (current year only)
+$yearly_sql = "SELECT YEAR(order_date) AS year, SUM(total_amount) AS yearly_profit 
+               FROM orders 
+               WHERE YEAR(order_date) = '$current_year' 
+               GROUP BY YEAR(order_date)";
 $yearly_result = $conn->query($yearly_sql);
 
-// Get Total Profit
+// Get Total Profit (all time)
 $total_sql = "SELECT SUM(total_amount) AS total_profit FROM orders";
 $total_result = $conn->query($total_sql);
 $total_profit = $total_result->fetch_assoc()['total_profit'];

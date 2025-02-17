@@ -1,9 +1,8 @@
 <?php
-include 'db.php';
 session_start();
 
 // Redirect to login if user is not logged in
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['loggedInUser'])) {
     header("Location: login.php");
     exit();
 }

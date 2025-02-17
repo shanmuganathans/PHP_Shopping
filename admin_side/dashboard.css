@@ -1,79 +1,92 @@
-/* Global Styles */
-body {
+/* ==========================
+   🌍 GLOBAL STYLING 
+   ========================== */
+   body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #fdf5e6; /* Light cream background */
+    background: linear-gradient(135deg, #f8f8f8 0%, #bbe8ab 100%);
     color: #333;
     text-align: center;
 }
 
-/* Dashboard Container */
+/* ==========================
+   🌟 DASHBOARD CONTAINER STYLING
+   ========================== */
 .dashboard-container {
     max-width: 900px;
     margin: 50px auto;
-    padding: 20px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Dashboard Title */
+/* ==========================
+   🏡 DASHBOARD TITLE STYLING
+   ========================== */
 .dashboard-container h1 {
     font-size: 2rem;
-    color: #b34d3a;
+    color: #28a745; /* Using color from menu.css */
     margin-bottom: 10px;
 }
 
-/* User Info */
-.dashboard-container p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-/* Admin Navigation Links */
+/* ==========================
+   📋 NAVIGATION LINKS STYLING
+   ========================== */
 .admin-nav {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Makes it responsive */
+    flex-wrap: wrap;
+    justify-content: center; /* Center the buttons */
     gap: 15px;
     margin: 20px 0;
 }
 
-/* Navigation Buttons */
+/* ==========================
+   🎯 BUTTON STYLING
+   ========================== */
 .admin-nav a {
     text-decoration: none;
-    background-color: #b34d3a;
+    background-color: #28a745; /* Using color from menu.css */
     color: white;
-    padding: 12px 18px;
-    border-radius: 8px;
+    padding: 12px 20px;
+    border-radius: 5px;
     font-size: 1rem;
     font-weight: bold;
     transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
 }
 
-/* Hover Effects */
+/* ==========================
+   🔲 HOVER EFFECT FOR BUTTONS
+   ========================== */
 .admin-nav a:hover {
-    background-color: #9f422f;
-    transform: translateY(-2px);
+    background-color: #218838; /* Darker green for hover effect */
+    transform: translateY(-3px);
 }
 
-/* Logout Button */
+/* ==========================
+   🚪 LOGOUT BUTTON STYLING
+   ========================== */
 .logout-btn {
-    background-color: #d9534f;
+    background-color: #dc3545; /* Red color for logout */
 }
 
 .logout-btn:hover {
-    background-color: #c9302c;
+    background-color: #c82333; /* Darker red on hover */
 }
 
-/* Responsive Design */
+/* ==========================
+   📱 RESPONSIVE DESIGN (FOR SMALLER SCREENS)
+   ========================== */
 @media (max-width: 768px) {
     .dashboard-container {
-        width: 90%;
-        padding: 15px;
+        width: 95%;
+        padding: 20px;
     }
 
-    .admin-nav {
-        flex-direct
+    .admin-nav a {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+}

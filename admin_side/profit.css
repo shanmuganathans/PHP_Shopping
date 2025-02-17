@@ -1,69 +1,112 @@
-/* General Styles */
+/* General Styling */
 body {
+    background-color: #f8f8f8; /* Light greenish background */
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    color: #333;
 }
 
 /* Dashboard Container */
 .dashboard-container {
     width: 80%;
-    max-width: 900px;
     margin: 30px auto;
-    background: #fff;
+    background: #fff; /* White background for the content area */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
+    border-radius: 10px;
     text-align: center;
 }
 
-/* Heading Styles */
-h1, h2, h3 {
-    color: #b34d3a;
+/* Heading */
+h1 {
+    color: #333; /* Dark grey for title text */
     margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+h2 {
+    color: #333;
+    margin-top: 30px;
+    font-size: 1.5rem;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
 }
 
 /* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
-    background: #fff;
+    margin-top: 20px;
+    font-size: 1rem;
 }
 
-th, td {
-    padding: 10px;
+table th,
+table td {
+    padding: 12px;
+    border: 1px solid #ddd; /* Light border for table cells */
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background: #b34d3a;
+table th {
+    background-color: #007bff; /* Blue background for table headers */
     color: white;
-    font-weight: bold;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Grey for alternating rows */
 }
 
-tr:hover {
-    background: #f0e8e8;
+table tr:hover {
+    background-color: #e1e1e1; /* Light hover effect */
 }
 
-/* Back Button */
+/* Back Button Styling */
 .back-btn {
     display: inline-block;
-    text-decoration: none;
-    background: #5a9f9d;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
     margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #6c757d; /* Grey for back button */
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
 .back-btn:hover {
-    background: #458e8b;
+    background-color: #5a6268; /* Darker grey on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Adjust title size for smaller screens */
+    }
+
+    h3 {
+        font-size: 1.2rem; /* Adjust subtitle size */
+    }
+
+    table {
+        font-size: 0.9rem; /* Smaller font for tables on mobile */
+    }
+
+    table th, table td {
+        font-size: 0.9rem; /* Adjust font size for table cells */
+    }
+
+    .back-btn {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
 }
