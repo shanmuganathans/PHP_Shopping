@@ -7,15 +7,7 @@ if (!isset($_SESSION['loggedInUser'])) {
     exit();
 }
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$db_name = "register";
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db.php';
 
 // Fetch all feedbacks
 $feedback_query = "SELECT username, feedback, created_at FROM feedbacks ORDER BY created_at DESC";

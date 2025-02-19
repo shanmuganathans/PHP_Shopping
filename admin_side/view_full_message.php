@@ -8,17 +8,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 // Database Connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$db_name = "register";
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db.php';
 
 // Validate and fetch the message
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -26,7 +16,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 }
 
 $message_id = intval($_GET['id']);
-$stmt = $conn->prepare("SELECT id, name, email, subject, message, submitted_at FROM contact_messages WHERE id = ?");
+$stmt = $conn->prepare("SELECT id, name, email, subject, message, date_submitted FROM contact_messages WHERE id = ?");
 $stmt->bind_param("i", $message_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -75,7 +65,7 @@ $conn->close();
             </tr>
             <tr>
                 <th>Date Submitted:</th>
-                <td><?php echo date("Y-m-d H:i:s", strtotime($message['submitted_at'])); ?></td>
+                <td><?php echo date("Y-m-d H:i:s", strtotime($message['date_submitted'])); ?></td>
             </tr>
         </table>
 

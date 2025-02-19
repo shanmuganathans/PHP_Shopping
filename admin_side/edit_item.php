@@ -1,17 +1,7 @@
 <?php
 session_start();
 // Database connection
-$host = 'localhost';
-$username = 'root';
-$password = 'root@123';
-$database = 'register';
-
-$conn = new mysqli($host, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
-
+include 'db.php';
 
 // Redirect if not logged in
 if (!isset($_SESSION['loggedInUser'])) {

@@ -8,17 +8,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 // Database Connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$db_name = "register";
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-
-// Check Connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db.php';
 
 // Fetch all orders (Sorted by latest first)
 $sql = "SELECT id, customer_name, email, phone, address, total_amount, order_date FROM orders ORDER BY order_date DESC";

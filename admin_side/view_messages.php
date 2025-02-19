@@ -8,17 +8,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 // Database Connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$db_name = "register";
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-
-// Check Connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db.php';
 
 // Handle message deletion
 if (isset($_GET['delete_id'])) {
@@ -32,7 +22,7 @@ if (isset($_GET['delete_id'])) {
 }
 
 // Fetch all messages securely
-$sql = "SELECT id, name, email, subject, message, submitted_at FROM contact_messages ORDER BY submitted_at DESC";
+$sql = "SELECT id, name, email, subject, message, date_submitted FROM contact_messages ORDER BY date_submitted DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();

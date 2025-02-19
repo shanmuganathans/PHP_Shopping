@@ -8,15 +8,7 @@ if (!isset($_SESSION['loggedInUser'])) {
 }
 
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$db_name = "register";
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db.php';
 
 // Handle user deletion securely
 if (isset($_GET['delete_id'])) {

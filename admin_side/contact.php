@@ -1,16 +1,5 @@
 <?php
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$db_name = "register";
-
-$conn = new mysqli($servername, $username, $password, $db_name);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
+include 'db.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
