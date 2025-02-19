@@ -1,18 +1,5 @@
 <?php
 include 'db.php';
-// Database configuration
-$servername = "localhost"; // Change if your database server is different
-$username = "root"; // Your database username
-$password = "root@123"; // Your database password
-$dbname = "register"; // Your database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Initialize response variables
 $success_message = "";

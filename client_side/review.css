@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    margin: 0;
+    padding: 0;
+    color: #333; /* Darker text for better readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Review Container */
+.review-container {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.review-container h2 {
+    font-size: 2em;
+    color: #4a90e2;
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 20px;
+}
+
+/* Textarea Styling */
+#feedbackText {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    font-size: 1em;
+    border: 2px solid #5c9fdb;
+    border-radius: 8px;
+    resize: none;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+#feedbackText:focus {
+    border-color: #4a90e2;
+}
+
+/* Buttons */
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Save Button */
+.save-btn {
+    background-color: #5c9fdb;
+    color: white;
+    font-weight: bold;
+}
+
+.save-btn:hover {
+    background-color: #4a90e2;
+    transform: scale(1.05);
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #d9534f;
+    color: white;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .review-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #feedbackText {
+        height: 100px;
+    }
+}

@@ -1,5 +1,7 @@
 <?php
 session_start();
+// Connect to database
+include 'db.php';
 
 // Redirect to login if not logged in
 if (!isset($_SESSION['username'])) {
@@ -7,8 +9,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Connect to database
-include 'db.php';
+
 
 // Check if email is set in session
 if (!isset($_SESSION['loggedInUserEmail'])) {

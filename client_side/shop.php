@@ -6,20 +6,6 @@ session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
-
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "root@123";
-$dbname = "register";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Database Connection Failed: " . $conn->connect_error);
-}
-
 // Handle adding items to the cart
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $item_name = filter_input(INPUT_POST, 'item_name', FILTER_SANITIZE_STRING);

@@ -69,7 +69,7 @@ $latest_items = $conn->query($latest_items_query);
         <div class="product-list">
             <?php while ($item = $latest_items->fetch_assoc()): ?>
                 <div class="product">
-                <img src="/uploads/<?= htmlspecialchars($item['image']) ?>" 
+                <img src="../uploads/<?= htmlspecialchars($item['image']) ?>" 
      alt="<?= htmlspecialchars($item['name']) ?>" 
      width="275" height="280" loading="lazy">
 
