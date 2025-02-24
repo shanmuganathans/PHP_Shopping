@@ -64,7 +64,7 @@ while ($row = $result->fetch_assoc()) {
             echo '<h2>' . htmlspecialchars($category) . '</h2>';
             foreach ($items as $item) {
                 echo '<div class="menu-item" data-name="' . htmlspecialchars($item['name']) . '">
-                        <img src="../images/' . htmlspecialchars($item['image']) . '" alt="' . htmlspecialchars($item['name']) . '">
+                        <img src="../uploads/' . htmlspecialchars($item['image']) . '" alt="' . htmlspecialchars($item['name']) . '">
                         <h3>' . htmlspecialchars($item['name']) . ' - ₹' . htmlspecialchars($item['price']) . '</h3>
                       </div>';
             }

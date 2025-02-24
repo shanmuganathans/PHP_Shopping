@@ -6,17 +6,19 @@ session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
+
 // Handle adding items to the cart
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $item_id = filter_input(INPUT_POST, 'item_id', FILTER_SANITIZE_NUMBER_INT);
     $item_name = filter_input(INPUT_POST, 'item_name', FILTER_SANITIZE_STRING);
     $item_price = filter_input(INPUT_POST, 'item_price', FILTER_VALIDATE_FLOAT);
     $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
 
-    if ($item_name && $item_price && $quantity && $quantity > 0) {
+    if ($item_id && $item_name && $item_price && $quantity && $quantity > 0) {
         // Check if item already exists in the session cart
         $found = false;
         foreach ($_SESSION['cart'] as &$cart_item) {
-            if ($cart_item['name'] === $item_name) {
+            if ($cart_item['id'] == $item_id) {
                 $cart_item['quantity'] += $quantity;
                 $found = true;
                 break;
@@ -24,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         if (!$found) {
             $_SESSION['cart'][] = [
+                'id' => $item_id,   // Store item ID
                 'name' => $item_name,
                 'quantity' => $quantity,
                 'price' => $item_price,
@@ -31,9 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Store item in the database
-        $stmt = $conn->prepare("INSERT INTO cart (name, quantity, price) VALUES (?, ?, ?) 
+        $stmt = $conn->prepare("INSERT INTO cart (id, name, quantity, price) 
+                                VALUES (?, ?, ?, ?) 
                                 ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)");
-        $stmt->bind_param("sdi", $item_name, $quantity, $item_price);
+        $stmt->bind_param("isid", $item_id, $item_name, $quantity, $item_price);
 
         if (!$stmt->execute()) {
             die("Error adding item to database: " . $stmt->error);
@@ -49,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 // Fetch items from the database
-$sql = "SELECT name, price, category FROM items";
+$sql = "SELECT id, name, price, category FROM items"; // Include ID
 $result = $conn->query($sql);
 
 $items_by_category = [];
@@ -62,6 +66,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,12 +101,13 @@ $conn->close();
                 <td><?= htmlspecialchars($item['name']) ?></td>
                 <td>₹ <?= htmlspecialchars($item['price']) ?> per piece</td>
                 <td>
-                    <form method="POST">
-                        <input type="hidden" name="item_name" value="<?= htmlspecialchars($item['name']) ?>">
-                        <input type="hidden" name="item_price" value="<?= htmlspecialchars($item['price']) ?>">
-                        <input type="number" name="quantity" value="1" min="1" required>
-                        <button type="submit">Add to Cart</button>
-                    </form>
+                <form method="POST">
+                    <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
+                    <input type="hidden" name="item_name" value="<?= htmlspecialchars($item['name']) ?>">
+                    <input type="hidden" name="item_price" value="<?= htmlspecialchars($item['price']) ?>">
+                    <input type="number" name="quantity" value="1" min="1" required>
+                    <button type="submit">Add to Cart</button>
+                </form>
                 </td>
             </tr>
             <?php endforeach; ?>
